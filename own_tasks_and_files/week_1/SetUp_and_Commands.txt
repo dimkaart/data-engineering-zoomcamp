@@ -11,6 +11,7 @@ docker:
     start docker: docker-compose up -d
     check docker: docker ps
     build docker: docker build -t test:pandas .
+    run docker: docker run -it test:pandas
     close docker container: docker kill $ID
 
 pgcli: (CLI for Postgres with auto-complition)
@@ -25,7 +26,8 @@ pgadmin:
     --> pw: root
 
 jupyter notebook:
-    connection:  http://localhost:8888/?token=5c86a9875f459fdfc6fa64aca07f3f45aa5fd0b401ee489f 
+    connection (has to be renewed in GCP):  http://localhost:8888/?token=5c86a9875f459fdfc6fa64aca07f3f45aa5fd0b401ee489f 
+    
 
 
 TODO pgcli from local machine does not work --> only freezes the terminal in Visual Studio

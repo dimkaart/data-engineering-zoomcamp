@@ -1,0 +1,37 @@
+# docker command based on the following settings:
+# services:
+#   pgdatabase:
+#     image: postgres:13
+#     environment:
+#       - POSTGRES_USER=root
+#       - POSTGRES_PASSWORD=root
+#       - POSTGRES_DB=ny_taxi
+#     volumes: --> Way of mapping folder from the host machine to a folder in the docker container
+#       - "./ny_taxi_postgres_data:/var/lib/postgresql/data:rw"
+#     ports:
+#       - "5432:5432"
+#   pgadmin:
+#     image: dpage/pgadmin4
+#     environment:
+#       - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+#       - PGADMIN_DEFAULT_PASSWORD=root
+#     ports:
+#       - "8080:80"
+
+# Local:
+winpty docker run -it \
+    -e POSTGRES_USER="root" \
+    -e POSTGRES_PASSWORD="admin" \
+    -e POSTGRES_DB="ny_taxi" \
+    -v "D:/Courses/Coding Courses/git/data-engineering-zoomcamp/own_tasks_and_files/week_1/ny_taxi_postgres_data":/var/lib/postgresql/data:rw \
+    -p 5432:5432 \
+    postgres:13
+
+# GCP
+docker run -it \
+    -e POSTGRES_USER="root" \
+    -e POSTGRES_PASSWORD="admin" \
+    -e POSTGRES_DB="ny_taxi" \
+    -v "/home/dmitri/data-engineering-zoomcamp/week_1_basics_n_setup/2_docker_sql/ny_taxi_postgres_data":/var/lib/postgresql/data:rw \
+    -p 5432:5432 \
+    postgres:13
