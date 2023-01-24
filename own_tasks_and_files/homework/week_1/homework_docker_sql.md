@@ -19,6 +19,8 @@ Which tag has the following text? - *Write the image ID to the file*
 - `--idimage string`
 - `--idfile string`
 
+## Answer 1. Knowing docker Tags
+The command `docker build --iidfile` (as string) will write the image ID to the file.
 
 ## Question 2. Understanding docker first run 
 
@@ -30,6 +32,17 @@ How many python packages/modules are installed?
 - 6
 - 3
 - 7
+
+## Answer 2. Understanding docker first run
+Executed Code: `docker run -it entrypoint=bash python:3.9` 
+Pip list resulted in the following output: <br>
+```bash
+Package    Version
+---------- -------
+pip        22.0.4
+setuptools 58.1.0
+wheel      0.38.4 
+```
 
 
 # Prepare Postgres
@@ -59,6 +72,11 @@ Remember that `lpep_pickup_datetime` and `lpep_dropoff_datetime` columns are in 
 - 17630
 - 21090
 
+## Answer 3. Count records
+There are `20530` records for green taxi on the 15th January 2019.
+The earliest pickup on this day by a green taxi was at 00:00:10 and the latest pickup at 23:56:38. 
+The earliest dropoff on this day by a green taxi was at 00:03:01 and the latest dropoff at 23:59:54.
+
 ## Question 4. Largest trip for each day
 
 Which was the day with the largest trip distance
@@ -69,6 +87,15 @@ Use the pick up time for your calculations.
 - 2019-01-15
 - 2019-01-10
 
+## Answer 4. Largest trip for each day
+```bash
+Longest distance on "2019-01-10": 64.2
+Longest distance on "2019-01-15": 117.99
+Longest distance on "2019-01-18": 80.96
+Longest distance on "2019-01-28": 64.27
+```
+The day with the longest distance for a single trip by a green taxis is the `2019-01-15` with a distance of 117.99 miles.
+
 ## Question 5. The number of passengers
 
 In 2019-01-01 how many trips had 2 and 3 passengers?
@@ -78,6 +105,8 @@ In 2019-01-01 how many trips had 2 and 3 passengers?
 - 2: 1282 ; 3: 254
 - 2: 1282 ; 3: 274
 
+## Answer 5. The number of passengers
+In 2019-01-01 in total `1282` trips had two passengers and `254` trips had three passengers.
 
 ## Question 6. Largest tip
 
@@ -91,6 +120,11 @@ Note: it's not a typo, it's `tip` , not `trip`
 - South Ozone Park
 - Long Island City/Queens Plaza
 
+## Answer 6. Largest tip
+The largest tip was `88.0` £ for a trip starting at Astoria and ending at `Long Island City/Queens Plaza`.
+
+## Comments on the Solution
+See `homework.py` in own_tasks_and_files\homework\week_1
 
 ## Submitting the solutions
 

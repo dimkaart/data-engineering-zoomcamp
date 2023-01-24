@@ -1,5 +1,5 @@
 locals {
-  data_lake_bucket = "dtc_data_lake" 
+  data_lake_bucket = "dtc_data_lake"
 }
 
 variable "project" {
@@ -10,14 +10,8 @@ variable "project" {
 
 variable "region" {
   description = "Region for GCP resources. Choose as per your location: https://cloud.google.com/about/locations"
-  default = "europe-west1"
+  default = "europe-west6"
   type = string
-}
-
-# not needed for now
-variable "buckt_name" {
-  description = "The name of the Google Cloud Storage bucket. Must be globally unique."
-  default = ""
 }
 
 variable "storage_class" {
@@ -29,10 +23,4 @@ variable "BQ_DATASET" {
   description = "BigQuery Dataset that raw data (from GCS) will be written to"
   type = string
   default = "trips_data_all"
-}
-
-variable "TABLE_NAME" {
-  description = "BigQuery Table"
-  type = string
-  default = "ny_trips"
 }

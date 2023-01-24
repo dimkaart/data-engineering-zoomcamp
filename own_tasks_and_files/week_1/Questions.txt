@@ -1,0 +1,24 @@
+# Question 1
+The docker expressions for ingesting ny_taxi
+'''
+docker run -it \
+    --network=pg-network \ 
+    taxi_ingest:v001 \ 
+        --user=root \  
+        --password=root \
+        --host=pg-database \
+        --port=5432 \
+        --db=ny_taxi \
+        --table_name=yellow_taxi_trips \
+        --url="https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz"
+'''
+
+data does not run properly. It returns the following error:
+
+'''
+docker: invalid reference format.
+See 'docker run --help'.
+taxi_ingest:v001: command not found
+--user=root: command not found
+--password=root: command not found
+'''
