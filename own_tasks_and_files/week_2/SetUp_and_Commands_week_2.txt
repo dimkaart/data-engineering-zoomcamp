@@ -1,2 +1,5 @@
 python:
     install requirements: pip install -r requirements.txt
+
+prefect:
+    start prefect: prefect orion start

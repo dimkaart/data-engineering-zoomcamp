@@ -7,6 +7,16 @@ winpty docker run -it \
     -p 5432:5432 \
     postgres:13
 
+docker run -it \
+    -p 5432:5432 \ 
+    -v "ny_taxi_postgres_data:/var/lib/postgresql/data" \
+    -e POSTGRES_USER="root" \
+    -e POSTGRES_PASSWORD="root" \ 
+    -e POSTGRES_DB="ny_taxi" \
+    --network=pg-network \
+    --name pg-database \
+    postgres:13
+
 # GCP
 docker run -it \
     -e POSTGRES_USER="root" \
@@ -23,9 +33,9 @@ docker run -it \
     -e PGADMIN_DEFAULT_PASSWORD="root" \
     -p 8080:80 \
     --network=pg-network \
-    --name = pgadmin \
     dpage/pgadmin4
 
+    --name = pgadmin \
 # Local Execution in Terminal of python code ingest_data.py:
 python ingest_data.py \
     --user=root \
