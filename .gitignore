@@ -18,3 +18,5 @@ serving_dir
 
 warm-ring*
 example.txt
+leaderboard.py
+.prefectignore

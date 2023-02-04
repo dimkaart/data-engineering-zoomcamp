@@ -17,7 +17,7 @@ variable "region" {
 # not needed for now
 variable "buckt_name" {
   description = "The name of the Google Cloud Storage bucket. Must be globally unique."
-  default = ""
+  default = "prefect-dtc-dez"
 }
 
 variable "storage_class" {
@@ -28,11 +28,11 @@ variable "storage_class" {
 variable "BQ_DATASET" {
   description = "BigQuery Dataset that raw data (from GCS) will be written to"
   type = string
-  default = "trips_data_all"
+  default = "dtc_dez_ny_taxi"
 }
 
 variable "TABLE_NAME" {
   description = "BigQuery Table"
   type = string
-  default = "ny_trips"
+  default = "rides_yellow"
 }

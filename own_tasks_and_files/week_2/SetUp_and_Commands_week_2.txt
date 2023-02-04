@@ -3,3 +3,10 @@ python:
 
 prefect:
     start prefect: prefect orion start
+    register blocks: prefect block register -m prefect_gcp --> Add block afterwards in orion UI
+    create prefect deployment through CLI: prefect deployment build ./$PYTHON_FILE_WITH_FLOW:$ENTRY_FLOW -n $NAME_OF_DEPLOYMENT
+        - Example: prefect deployment build ./parameterized_flow.py:etl_parent_flow -n "Parameterized ETL"
+    upload prefect deployment: prefect deployment apply $DEPLOYMENT_YAML
+        - Example: prefect deployment apply etl_parent_flow-deployment.yaml
+    start prefect agent to execute flows: prefect agent start  --work-queue $NAME_PREFECT_WORK_QUE
+        - Example : prefect agent start  --work-queue "default"
