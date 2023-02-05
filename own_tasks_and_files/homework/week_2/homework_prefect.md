@@ -58,6 +58,10 @@ Make sure you have the parquet data files for Yellow taxi data for Feb. 2019 and
 - 11,338,483
 
 
+## Answer 3. Loading data to BigQuery
+
+The flow code processed in total `14,851,920` rows. The code can be seen in `etl_gcs_to_bq_week2hw.py`. The logs of the flow is the following one:
+![alt text](../../images/flow_question3.png)
 
 ## Question 4. Github Storage Block
 
