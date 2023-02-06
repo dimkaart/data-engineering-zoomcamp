@@ -20,3 +20,4 @@ warm-ring*
 example.txt
 leaderboard.py
 .prefectignore
+own_tasks_and_files/week_2/data/*
