@@ -31,12 +31,12 @@ Using the flow in `etl_web_to_gcs.py`, create a deployment to run on the first o
 
 ## Answer 2. Scheduling with Cron
 The structure of cron is as follows: `minute hour day(of month) month day(of week)`
-Therefore, to create a deployment to run on the first of every month at 5am is `0 5 1 * *`. This can be set up within the `etl_parent_flow-deployment.yaml` under the parameter 
+Therefore, to create a deployment to run on the first of every month at 5am is `0 5 1 * *`. This can be set up within the `etl_parent_flow-deployment.yaml` under the parameter schedule or directli from the CLI with the formulation:
 
-```
-schedule:
-    cron: 0 5 1 * * 
-```
+`prefect deployment build etl_web_to_gcs_week2hw_Q2.py -n "ETL_HW_Q2" --cron "0 5 1 * *" -a`
+
+The result is:
+![alt text](../../images/flow_question2.png)
 
 ## Question 3. Loading data to BigQuery 
 
@@ -60,7 +60,7 @@ Make sure you have the parquet data files for Yellow taxi data for Feb. 2019 and
 
 ## Answer 3. Loading data to BigQuery
 
-The flow code processed in total `14,851,920` rows. The code can be seen in `etl_gcs_to_bq_week2hw.py`. The logs of the flow is the following one:
+The flow code processed in total `14,851,920` rows. The code can be seen in `etl_gcs_to_bq_week2hw_Q3.py`. The logs of the flow are the following ones:
 ![alt text](../../images/flow_question3.png)
 
 ## Question 4. Github Storage Block
@@ -78,6 +78,9 @@ How many rows were processed by the script?
 - 88,605
 - 190,225
 
+## Answer 4. Github Storage Block
+
+`88,605`
 
 
 ## Question 5. Email or Slack notifications
@@ -109,6 +112,10 @@ How many rows were processed by the script?
 - `514,392`
 
 
+## Answer 5. Email or Slack notifications
+
+`514,392`
+
 ## Question 6. Secrets
 
 Prefect Secret blocks provide secure, encrypted storage in the database and obfuscation in the UI. Create a secret block in the UI that stores a fake 10-digit password to connect to a third-party service. Once you’ve created your block in the UI, how many characters are shown as asterisks (*) on the next page of the UI?
@@ -118,6 +125,10 @@ Prefect Secret blocks provide secure, encrypted storage in the database and obfu
 - 8
 - 10
 
+## Answer 6. Secrets
+
+The secret block shows `8` asterix even though the password itself has 10 digits.
+![alt text](../../images/flow_question6.png)
 
 ## Submitting the solutions
 

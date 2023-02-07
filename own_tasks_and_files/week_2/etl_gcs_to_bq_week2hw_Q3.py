@@ -12,7 +12,7 @@ def extract_from_gcs(color: str, year: int, month: int) -> Path:
     gcs_block.get_directory(from_path=gcs_path, local_path=f"./")
     return Path(f"./{gcs_path}")
 
-@task(log_prints=True)
+@task()
 def write_bq(df: pd.DataFrame) -> None:
     """Write DataFrame to Big Query"""
     
@@ -26,7 +26,7 @@ def write_bq(df: pd.DataFrame) -> None:
         if_exists="append"
     )
 
-@flow(log_prints=True)
+@flow()
 def etl_gcs_to_bq(month:int, year:int, color:str):
     """Main ETL flow to load data into Big Query"""    
     path = extract_from_gcs(color, year, month)
@@ -35,12 +35,13 @@ def etl_gcs_to_bq(month:int, year:int, color:str):
     write_bq(df)
     return len(df)
 
-@flow(log_prints=true)
-def etl_parent_flow(months:list[int], year:int, color:str):
-    total_rows_processed = 0
+@flow(log_prints=True)
+def etl_parent_flow(months:list[int] = [2,3], year:int = 2019, color:str = 'yellow'):
     for month in months:
-        total_rows_processed += etl_gcs_to_bq(month, year, color)
-    print(f"total rows processed: {total_rows_processed}")
+        print(month)
+        total_rows_processed = etl_gcs_to_bq(month, year, color)
+        print(f"Month: {month} rows: {total_rows_processed}")
+    
 
 if __name__ == "__main__":
     months = [2,3]
