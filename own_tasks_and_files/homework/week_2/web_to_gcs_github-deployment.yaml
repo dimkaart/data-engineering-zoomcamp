@@ -1,0 +1,48 @@
+###
+### A complete description of a Prefect Deployment for flow 'etl-web-to-gcs'
+###
+name: ETL_HW_Q4
+description: The main ETL function
+version: d09ad8d58e889cfa3ab079b87bfe92a8
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+tags: []
+parameters: {}
+schedule: null
+infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: etl-web-to-gcs
+manifest_path: null
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  _block_document_id: 7fbfd37f-92ba-4611-961c-ed606e635e99
+  _block_document_name: anonymous-6e49c47b-1481-46e5-b245-9614d56373f1
+  _is_anonymous: true
+  block_type_slug: process
+  _block_type_slug: process
+storage:
+  repository: https://github.com/dimkaart/data-engineering-zoomcamp.git
+  reference: null
+  access_token: null
+  _block_document_id: 40681dc4-2342-43c7-a155-058144dc9f08
+  _block_document_name: dtc-dez-github
+  _is_anonymous: false
+  block_type_slug: github
+  _block_type_slug: github
+path: ''
+entrypoint: own_tasks_and_files\homework\week_2\etl_web_to_gcs_week2hw_Q4.py:etl_web_to_gcs
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties: {}
+  required: null
+  definitions: null
