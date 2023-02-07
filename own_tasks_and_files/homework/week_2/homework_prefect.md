@@ -15,7 +15,11 @@ How many rows does that dataset have?
 * 822,132
 
 ## Answer 1. Load January 2020 data
-The green taxi data set of January 2020 has `447,770` rows.
+The green taxi data set of January 2020 has `447,770` rows. The code for the task can be seen in `etl_web_to_gcs_week2hw_Q1.py`.
+
+The CLI execution for the deployment was: 
+`prefect deployment build ./etl_web_to_gcs_week2hw_Q5.py:etl_web_to_gcs -n "ETL_HW_Q5" -a`
+
 
 ## Question 2. Scheduling with Cron
 
@@ -31,9 +35,9 @@ Using the flow in `etl_web_to_gcs.py`, create a deployment to run on the first o
 
 ## Answer 2. Scheduling with Cron
 The structure of cron is as follows: `minute hour day(of month) month day(of week)`
-Therefore, to create a deployment to run on the first of every month at 5am is `0 5 1 * *`. This can be set up within the `etl_parent_flow-deployment.yaml` under the parameter schedule or directli from the CLI with the formulation:
+Therefore, to create a deployment to run on the first of every month at 5am is `0 5 1 * *`. This can be set up within the `etl_parent_flow-deployment.yaml` under the parameter schedule or directly from the CLI with the formulation:
 
-`prefect deployment build etl_web_to_gcs_week2hw_Q2.py -n "ETL_HW_Q2" --cron "0 5 1 * *" -a`
+`prefect deployment build etl_web_to_gcs_week2hw_Q2.py:etl_web_to_gcs -n "ETL_HW_Q2" --cron "0 5 1 * *" -a`
 
 The result is:
 ![alt text](../../images/flow_question2.png)
@@ -80,8 +84,11 @@ How many rows were processed by the script?
 
 ## Answer 4. Github Storage Block
 
-`88,605`
+The script processed in total `88,605` as can be seen in:
+![alt text](../../images/flow_question4.png)
 
+The CLI execution for the deployment was:
+`prefect deployment build ./own_tasks_and_files/homework/week_2/etl_web_to_gcs_week2hw_Q4.py:etl_web_to_gcs -n "ETL_HW_Q4" -sb github/dtc-dez-github -o ./own_tasks_and_files/homework/week_2/web_to_gcs_github-deployment.yaml -a`
 
 ## Question 5. Email or Slack notifications
 
@@ -114,7 +121,14 @@ How many rows were processed by the script?
 
 ## Answer 5. Email or Slack notifications
 
-`514,392`
+After creating an E-Mail block with an e-mail, an automation is created whith the trigger being a flow run state and on crashes, failures and time outs an action will be executed in form of sending a notification to the E-Mail block.
+
+The CLI execution for the deployment was: 
+`prefect deployment build ./etl_web_to_gcs_week2hw_Q5.py:etl_web_to_gcs -n "ETL_HW_Q5" -a`
+
+
+The script processed in total `514,392` rows and the sent E-Mail after a deliberated change in code such that it crashes is:
+![alt text](../../images/flow_question5.png)
 
 ## Question 6. Secrets
 

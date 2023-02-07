@@ -1,9 +1,9 @@
 ###
 ### A complete description of a Prefect Deployment for flow 'etl-web-to-gcs'
 ###
-name: test4
+name: ETL_HW_Q1
 description: The main ETL function
-version: 61bee7bfd4ec0548366d03c11a170fb5
+version: 14d929c255a6c51b38686829a0987834
 # The work queue that will handle this deployment's runs
 work_queue_name: default
 tags: []
@@ -26,17 +26,9 @@ infrastructure:
 ###
 flow_name: etl-web-to-gcs
 manifest_path: null
-storage:
-  repository: https://github.com/dimkaart/data-engineering-zoomcamp.git
-  reference: null
-  access_token: null
-  _block_document_id: 40681dc4-2342-43c7-a155-058144dc9f08
-  _block_document_name: dtc-dez-github
-  _is_anonymous: false
-  block_type_slug: github
-  _block_type_slug: github
-path: ''
-entrypoint: own_tasks_and_files\homework\week_2\etl_web_to_gcs_week2hw_Q4.py:etl_web_to_gcs
+storage: null
+path: D:\Courses\Coding Courses\git\data-engineering-zoomcamp\own_tasks_and_files\homework\week_2
+entrypoint: etl_web_to_gcs_week2hw_Q1.py:etl_web_to_gcs
 parameter_openapi_schema:
   title: Parameters
   type: object
