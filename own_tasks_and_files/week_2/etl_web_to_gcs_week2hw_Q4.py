@@ -48,7 +48,7 @@ def clean(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-@task()
+@task(log_prints=True)
 def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
     """Write DataFrame out locally as parquet file"""
     Path(f"data/{color}").mkdir(parents=True, exist_ok=True)
@@ -57,7 +57,7 @@ def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
     return path
 
 
-@task
+@task(log_prints=True)
 def write_gcs(path: Path) -> None:
     """Upload local parquet file to GCS"""
     gcs_block = GcsBucket.load("zoom-gcs")
@@ -65,7 +65,7 @@ def write_gcs(path: Path) -> None:
     return
 
 
-@flow()
+@flow(log_prints=True)
 def etl_web_to_gcs() -> None:
     """The main ETL function"""
     color = "green"
