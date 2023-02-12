@@ -5,56 +5,58 @@ from prefect_gcp.cloud_storage import GcsBucket
 from prefect.tasks import task_input_hash
 from datetime import timedelta
 
+
 @task(retries=3)
 def fetch(dataset_url: str) -> pd.DataFrame:
     """Read taxi data from web into pandas DataFrame"""
     df = pd.read_csv(dataset_url)
     return df
 
+
 @task(log_prints=True)
-def clean_yellow(df = pd.DataFrame) -> pd.DataFrame:
+def clean_yellow(df=pd.DataFrame) -> pd.DataFrame:
     """Fix dtype issues"""
-    df['tpep_pickup_datetime'] = pd.to_datetime(df['tpep_pickup_datetime'])
-    df['tpep_dropoff_datetime'] = pd.to_datetime(df['tpep_dropoff_datetime'])
+    df["tpep_pickup_datetime"] = pd.to_datetime(df["tpep_pickup_datetime"])
+    df["tpep_dropoff_datetime"] = pd.to_datetime(df["tpep_dropoff_datetime"])
     print(df.head(2))
     print(f"columns: {df.dtypes}")
     print(f"rows: {len(df)}")
     return df
 
+
 @task(log_prints=True)
-def clean_green(df = pd.DataFrame) -> pd.DataFrame:
+def clean_green(df=pd.DataFrame) -> pd.DataFrame:
     """Fix dtype issues"""
-    df['lpep_pickup_datetime'] = pd.to_datetime(df['lpep_pickup_datetime'])
-    df['lpep_dropoff_datetime'] = pd.to_datetime(df['lpep_dropoff_datetime'])
+    df["lpep_pickup_datetime"] = pd.to_datetime(df["lpep_pickup_datetime"])
+    df["lpep_dropoff_datetime"] = pd.to_datetime(df["lpep_dropoff_datetime"])
     print(df.head(2))
     print(f"columns: {df.dtypes}")
     print(f"rows: {len(df)}")
     return df
-    
+
+
 @task(log_prints=True)
 def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
     """Write DataFrame out locallz as parquet file"""
     path = Path(f"data/{color}/{dataset_file}.parquet")
     df.to_parquet(path, compression="gzip")
     return path
-    
-    
+
+
 @task(log_prints=True)
 def write_gcs(path: Path) -> None:
     """Upload local parquet file to GCS"""
     gcs_block = GcsBucket.load("dtc-dez-gcs")
-    gcs_block.upload_from_path(
-        from_path=path,
-        to_path=path
-    )
+    gcs_block.upload_from_path(from_path=path, to_path=path)
     return
 
+
 @flow()
-def etl_web_to_gcs(color:str, year:int, month:int) -> None:
-    """ The main ETL function"""
+def etl_web_to_gcs(color: str, year: int, month: int) -> None:
+    """The main ETL function"""
     dataset_file = f"{color}_tripdata_{year}-{month:02}"
     dataset_url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{color}/{dataset_file}.csv.gz"
-    
+
     df = fetch(dataset_url)
     if color == "yellow":
         df_clean = clean_yellow(df)
@@ -62,20 +64,19 @@ def etl_web_to_gcs(color:str, year:int, month:int) -> None:
         df_clean = clean_green(df)
     path = write_local(df_clean, color, dataset_file)
     write_gcs(path)
-   
+
+
 @flow()
 def etl_parent_flow(
-    color: str = "yellow",
-    year: int = 2021,
-    months: list[int] = [1,2,3]
-):   
+    color: str = "yellow", year: int = 2021, months: list[int] = [1, 2, 3]
+):
     for month in months:
         etl_web_to_gcs(color, year, month)
-    
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     color = "yellow"
     year = 2021
-    months = [1,2,3,4,5,6,7]
+    months = [1, 2, 3, 4, 5, 6, 7]
 
-    
     etl_parent_flow(color, year, months)

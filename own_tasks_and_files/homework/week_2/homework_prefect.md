@@ -18,7 +18,7 @@ How many rows does that dataset have?
 The green taxi data set of January 2020 has `447,770` rows. The code for the task can be seen in `etl_web_to_gcs_week2hw_Q1.py`.
 
 The CLI execution for the deployment was: 
-`prefect deployment build ./etl_web_to_gcs_week2hw_Q5.py:etl_web_to_gcs -n "ETL_HW_Q5" -a`
+`prefect deployment build ./etl_web_to_gcs_week2hw_Q1.py:etl_web_to_gcs -n "ETL_HW_Q1" -a`
 
 
 ## Question 2. Scheduling with Cron

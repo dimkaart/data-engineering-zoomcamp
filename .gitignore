@@ -20,4 +20,11 @@ warm-ring*
 example.txt
 leaderboard.py
 .prefectignore
+own_tasks_and_files/week_2/data
 own_tasks_and_files/week_2/data/*
+own_tasks_and_files/homework/week_2/data
+own_tasks_and_files/homework/week_2/data/*
+own_tasks_and_files/homework/week_3/data
+own_tasks_and_files/homework/week_3/data/*
+own_tasks_and_files/week_3/DTalks-DataEng-Data Warehouse.pdf
+own_tasks_and_files/homework/week_3/fhv_tripdata*
