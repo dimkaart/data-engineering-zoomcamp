@@ -16,7 +16,7 @@ def fetch(dataset_url: str) -> pd.DataFrame:
     print(df.dtypes)
     return df
 
-
+# test gcs
 
 @task(log_prints=True)
 def write_local(df: pd.DataFrame, dataset_file: str) -> Path:
