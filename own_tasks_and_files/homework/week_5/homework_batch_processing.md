@@ -22,7 +22,7 @@ What's the output?
 </br></br>
 
 ### Answer 1: Install Spark and PySpark
-The version of pyspark is `3.3.2` (see `homework_fhvhv.ipynb` for this and all further answers).
+The version of pyspark is `3.2.3` (see `homework_fhvhv.ipynb` for this and all further answers).
 ![alt text](../../images/spark_question1.png)
 
 ### Question 2: 
