@@ -1,0 +1,7 @@
+piperider:
+    - initialization: piperider init
+    - test that everything works: piperider diagnose
+    - run report on current model: piperider run
+        --> !AFTER! initializing dbt (dbt deps) and building dbt core model (dbt build)
+    - compare reports: piperider compare-reports 
+        --> compare last two reports: piperider compare-reports --last
