@@ -12,3 +12,9 @@ tree:
 GCS:
     copy files from local system to GCS: gsutil cp $PATH_FOLDER_WITH_DATA gs://$BUCKET_NAME/$PATH_FOLDER_WITH_DATA
         --> Example: gsutil -m[multithread for large data] cp -r[recursive for folders] pq/ gs://prefect-dtc-dez/data/pq
+
+git:
+    Add submodules: git submodule add $SUBMODULE_HTTP
+    Update submodules: git pull --recurse-submodules
+    Clone repo with submodules: git clone --recurse-submodules
+    Initialize submodules after cloning main repo: git submodule update --init
