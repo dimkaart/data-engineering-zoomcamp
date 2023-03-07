@@ -5,3 +5,19 @@ piperider:
         --> !AFTER! initializing dbt (dbt deps) and building dbt core model (dbt build)
     - compare reports: piperider compare-reports 
         --> compare last two reports: piperider compare-reports --last
+    - run automatic comparison recipe (from default.yaml in .piperider/compare): piperider compare
+
+homework:
+    1) dbt:
+        - install dbt-bigquery
+        - `dbt init` (and set up with information from dbt cloud)
+        - `dbt debug`
+    2) piperider:
+        - install 'piperider[bigquery]'
+        - `piperider init`
+        - `piperider diagnose`
+    3) dbt:
+        - `dbt deps`
+        - `dbt build`
+    4) piperider:
+        - `piperider run`
